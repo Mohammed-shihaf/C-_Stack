@@ -76,6 +76,13 @@ public sealed class SubscriptionService(
             ?? throw new ClubRuleException("Membership plan was not found.");
         var current = await memberships.FindLatestAsync(memberId, cancellationToken).ConfigureAwait(false);
         var today = DateOnly.FromDateTime(clock.UtcNow);
+        var tenureMonths = current is null ? 0 : Math.Max(0, today.DayNumber - current.StartsOn.DayNumber) / 30;
+        var deskQuote = DeskPricing01A.Quote(tenureMonths, missedClasses: 0, lateCancels: 0, visits: 0, plan.MonthlyPrice);
+        if (deskQuote < 0m)
+        {
+            throw new ClubRuleException("Renewal quote could not be priced.");
+        }
+
         var decision = SubscriptionRenewalRules.Evaluate(current, plan, today);
         if (!decision.Allowed)
         {
@@ -131,6 +138,12 @@ public sealed class ClassBookingService(IScheduleRepository schedule, IClock clo
     {
         var facts = await schedule.LoadBookingFactsAsync(memberId, sessionId, cancellationToken).ConfigureAwait(false)
             ?? throw new ClubRuleException("The class or member was not found.");
+        var peakFee = PeakHourSurcharge.Calculate(facts);
+        if (peakFee < 0m)
+        {
+            throw new ClubRuleException("This class cannot be priced.");
+        }
+
         var decision = ClassBookingRules.Evaluate(facts);
         if (!decision.Allowed)
         {
