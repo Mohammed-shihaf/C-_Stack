@@ -1,34 +1,43 @@
-# .NET
-bin/
-obj/
-*.user
-
-# Node
-node_modules/
+# Build output
+[Bb]in/
+[Oo]bj/
 dist/
-dist-ssr/
-*.local
+build/
 
-# Coverage / test output
-coverage/
+# Test and coverage output
 TestResults/
+coverage/
 *.trx
+*.coverage
+coverage.cobertura.xml
+.nyc_output/
+jscpd-report/
 
-# Benchmark artifacts (regenerated per branch build)
-artifacts/
+# Dependencies
+node_modules/
 
-# Editor / OS
+# Local configuration and secrets. Never commit these: appsettings.*.local.json and .env files are
+# the intended place for connection strings, signing keys, and the bootstrap administrator password.
+appsettings.*.local.json
+appsettings.Local.json
+.env
+.env.*
+!.env.example
+*.user
+*.pfx
+*.p12
+secrets.json
+
+# Editor and OS noise
 .vs/
 .vscode/*
 !.vscode/extensions.json
 .idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln.docstates
+*.swp
 .DS_Store
 Thumbs.db
 
-# Env files
-.env
-.env.local
+# Vite cache
+.vite/
+*.local
+*.tsbuildinfo
