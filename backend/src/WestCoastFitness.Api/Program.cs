@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using WestCoastFitness.Api;
 using WestCoastFitness.Application;
 using WestCoastFitness.Infrastructure;
+/*test*/
 
 var builder = WebApplication.CreateBuilder(args);
 
