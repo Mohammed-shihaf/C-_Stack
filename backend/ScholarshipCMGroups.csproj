@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Repository entry-point project for tooling that expects backend/ScholarshipCMGroups.csproj
+    (same layout as Scholarship-CMGroups-negative / Scholarship-CMGroups-negative-1).
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>12.0</LangVersion>
+    <IsPackable>false</IsPackable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="src\ScholarshipCMGroups.Api\ScholarshipCMGroups.Api.csproj" />
+  </ItemGroup>
+
+</Project>

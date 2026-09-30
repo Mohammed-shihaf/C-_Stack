@@ -1,0 +1,8 @@
+<Project>
+  <!-- Roslyn analyzer wiring at the repository root (matches Scholarship-CMGroups-negative-1 layout). -->
+  <PropertyGroup Condition="'$(IsTestProject)' != 'true'">
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest-Recommended</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+</Project>

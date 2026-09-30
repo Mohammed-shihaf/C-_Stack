@@ -1,0 +1,10 @@
+<Project>
+  <!--
+    Optional lint gate hook (same file layout as Scholarship-CMGroups-negative-1).
+    Default builds are unchanged; pass -p:LintGate=true to treat warnings as errors.
+  -->
+  <PropertyGroup Condition="'$(LintGate)' == 'true' And '$(IsTestProject)' != 'true'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+  </PropertyGroup>
+</Project>
