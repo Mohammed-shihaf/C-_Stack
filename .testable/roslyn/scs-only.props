@@ -1,0 +1,16 @@
+<!--
+  SecurityCodeScan.VS2019 5.6.7 — SAST security pass only.
+  Platform internal name: security-code-scan
+-->
+<Project>
+  <ItemGroup>
+    <PackageReference Include="SecurityCodeScan.VS2019" Version="5.6.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <ErrorLog>$(MSBuildProjectDirectory)/security-code-scan.sarif,version=2.1</ErrorLog>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+</Project>

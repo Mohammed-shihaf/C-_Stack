@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Coverlet 6.0.0 — Statement / Branch / Line coverage runsettings
+  Platform internal name: coverlet
+  Collected via: dotnet test --collect:"XPlat Code Coverage" --settings dotnet-coverlet.runsettings
+-->
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat code coverage">
+        <Configuration>
+          <!-- Cobertura XML format consumed by platform parser -->
+          <Format>cobertura</Format>
+          <!-- Exclude generated code, migrations, and test assemblies -->
+          <Exclude>
+            [*.Tests]*
+            [*.Test]*
+            [*.Specs]*
+          </Exclude>
+          <ExcludeByAttribute>
+            GeneratedCodeAttribute,
+            CompilerGeneratedAttribute,
+            ExcludeFromCodeCoverageAttribute
+          </ExcludeByAttribute>
+          <!-- Include .cs source only -->
+          <IncludeDirectory>./</IncludeDirectory>
+          <SingleHit>false</SingleHit>
+          <UseSourceLink>true</UseSourceLink>
+          <IncludeTestAssembly>false</IncludeTestAssembly>
+          <SkipAutoProperties>true</SkipAutoProperties>
+          <!-- Branch coverage -->
+          <DeterministicReport>true</DeterministicReport>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+  <RunConfiguration>
+    <MaxCpuCount>1</MaxCpuCount>
+  </RunConfiguration>
+</RunSettings>

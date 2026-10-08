@@ -1,0 +1,75 @@
+# Semgrep 1.50.0 — C# SAST multi-language rules
+# Platform internal name: semgrep
+# Registry version: 1.50.0
+
+rules:
+  # ── Security ──────────────────────────────────────────────────────────────
+  - id: csharp-sql-injection
+    languages: [csharp]
+    message: "Possible SQL injection: user input concatenated into SQL string"
+    severity: ERROR
+    patterns:
+      - pattern: |
+          $CMD = "..." + $INPUT + "...";
+      - pattern-not: |
+          $CMD = "...@...";
+
+  - id: csharp-hardcoded-password
+    languages: [csharp]
+    message: "Hardcoded password or secret detected"
+    severity: WARNING
+    pattern-either:
+      - pattern: 'string $X = "...password...";'
+      - pattern: 'string $X = "...secret...";'
+      - pattern: 'string $X = "...apikey...";'
+
+  - id: csharp-insecure-random
+    languages: [csharp]
+    message: "System.Random is not cryptographically secure; use RandomNumberGenerator"
+    severity: WARNING
+    pattern: new Random(...)
+
+  - id: csharp-unvalidated-redirect
+    languages: [csharp]
+    message: "Unvalidated redirect — validate the URL before redirecting"
+    severity: WARNING
+    pattern: return Redirect($URL);
+
+  - id: csharp-weak-hash
+    languages: [csharp]
+    message: "MD5/SHA1 are cryptographically weak; use SHA256 or stronger"
+    severity: WARNING
+    pattern-either:
+      - pattern: MD5.Create()
+      - pattern: SHA1.Create()
+      - pattern: new MD5CryptoServiceProvider()
+
+  # ── Performance ───────────────────────────────────────────────────────────
+  - id: csharp-string-concat-loop
+    languages: [csharp]
+    message: "String concatenation inside a loop; use StringBuilder"
+    severity: INFO
+    patterns:
+      - pattern: |
+          for (...) {
+            $S += ...;
+          }
+      - metavariable-type:
+          metavariable: $S
+          type: string
+
+  - id: csharp-linq-count-any
+    languages: [csharp]
+    message: "Use .Any() instead of .Count() > 0 for better performance"
+    severity: INFO
+    pattern: $X.Count() > 0
+
+  # ── PII / Compliance ─────────────────────────────────────────────────────
+  - id: csharp-pii-log
+    languages: [csharp]
+    message: "Potential PII logged — ensure field is sanitized before logging"
+    severity: WARNING
+    pattern-either:
+      - pattern: _logger.LogInformation("...$EMAIL...", ...)
+      - pattern: _logger.LogDebug("...$SSN...", ...)
+      - pattern: Console.WriteLine("..." + $EMAIL + "...")

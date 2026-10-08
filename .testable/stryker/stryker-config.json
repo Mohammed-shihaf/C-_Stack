@@ -1,0 +1,27 @@
+{
+  "_comment": "Stryker.NET 4.0.0 — mutation testing config. Platform internal name: stryker-net",
+  "stryker-config": {
+    "project": "ScholarshipCMGroups.csproj",
+    "test-projects": [
+      "tests/backend/ScholarshipCMGroups.Tests/ScholarshipCMGroups.Tests.csproj"
+    ],
+    "reporters": ["json", "cleartext"],
+    "threshold-high": 80,
+    "threshold-low": 60,
+    "threshold-break": 0,
+    "mutation-level": "Standard",
+    "mutate": [
+      "backend/**/*.cs",
+      "!backend/Migrations/**/*.cs",
+      "!backend/Properties/**/*.cs"
+    ],
+    "ignore-mutations": [
+      "string"
+    ],
+    "language-version": "CSharpLatest",
+    "max-concurrent-test-runners": 1,
+    "since": {
+      "enabled": false
+    }
+  }
+}

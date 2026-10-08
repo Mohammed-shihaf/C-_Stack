@@ -1,0 +1,9 @@
+# Lizard 1.17.10 — C# cyclomatic complexity config
+# Platform internal name: lizard
+# Registry version: 1.17.10
+
+[lizard]
+language = csharp
+CCN_threshold = 15
+length_threshold = 1000
+# Output in XML for platform parser

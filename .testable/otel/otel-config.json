@@ -1,0 +1,21 @@
+{
+  "_comment": "OpenTelemetry (.NET) + OTLP/Jaeger/Zipkin Exporter — Platform config",
+  "_tool": "opentelemetry-dotnet",
+  "_versions": {
+    "OpenTelemetry": "1.9.0",
+    "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.9.0",
+    "OpenTelemetry.Exporter.Jaeger": "1.5.1",
+    "OpenTelemetry.Exporter.Zipkin": "1.9.0",
+    "OpenTelemetry.Extensions.Hosting": "1.9.0",
+    "OpenTelemetry.Instrumentation.AspNetCore": "1.9.0",
+    "OpenTelemetry.Instrumentation.Http": "1.9.0"
+  },
+  "service_name": "ScholarshipCMGroups",
+  "exporter": "otlp",
+  "otlp_endpoint": "${OTEL_EXPORTER_OTLP_ENDPOINT:-http://localhost:4317}",
+  "jaeger_endpoint": "${OTEL_EXPORTER_JAEGER_ENDPOINT:-http://localhost:14268/api/traces}",
+  "zipkin_endpoint": "${OTEL_EXPORTER_ZIPKIN_ENDPOINT:-http://localhost:9411/api/v2/spans}",
+  "span_report_path": "${OTEL_SPAN_EXPORT_PATH:-otel-spans.json}",
+  "instrumentation": ["AspNetCore", "HttpClient", "EntityFrameworkCore"],
+  "platform_metric": "opentelemetry_spans.runtime_path_count"
+}

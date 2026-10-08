@@ -1,0 +1,36 @@
+<!--
+  Platform-injected Roslyn analyzers props
+  Microsoft.CodeAnalysis.NetAnalyzers  8.0.0
+  SonarAnalyzer.CSharp               9.32.0.97167
+  SecurityCodeScan.VS2019            5.6.7
+  All three are injected by the platform; do NOT add these PackageReferences
+  in your own csproj files.
+-->
+<Project>
+  <ItemGroup>
+    <!-- Roslyn / NetAnalyzers — linter / code style -->
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+
+    <!-- SonarAnalyzer — cognitive complexity + code smells -->
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.32.0.97167">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+
+    <!-- SecurityCodeScan — injection, CSRF, XSS, insecure deserialization -->
+    <PackageReference Include="SecurityCodeScan.VS2019" Version="5.6.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <!-- Emit SARIF for platform parsers -->
+    <ErrorLog>$(MSBuildProjectDirectory)/roslyn-analyzers.sarif,version=2.1</ErrorLog>
+    <ReportAnalyzer>true</ReportAnalyzer>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+</Project>

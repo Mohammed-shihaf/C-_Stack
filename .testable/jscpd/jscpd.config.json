@@ -1,0 +1,15 @@
+{
+  "_comment": "jscpd 4.0.5 — C# duplication detection. Platform internal name: jscpd-cs",
+  "languages": ["csharp"],
+  "minTokens": 50,
+  "minLines": 5,
+  "ignore": [
+    "**/bin/**",
+    "**/obj/**",
+    "**/.git/**",
+    "**/node_modules/**",
+    "**/packages/**"
+  ],
+  "reporters": ["json"],
+  "output": ".testable/jscpd/report"
+}

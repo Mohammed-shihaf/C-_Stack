@@ -1,0 +1,16 @@
+<!--
+  SonarAnalyzer.CSharp 9.32.0.97167 — cognitive complexity pass only.
+  Platform internal name: sonar-cs
+-->
+<Project>
+  <ItemGroup>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.32.0.97167">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <ErrorLog>$(MSBuildProjectDirectory)/sonar-cs.sarif,version=2.1</ErrorLog>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+</Project>
